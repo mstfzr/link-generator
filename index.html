@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Link Preview Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+    }
+    button {
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔧 Cloudflare Worker Link Preview Generator</h2>
+  <label>Judul:</label>
+  <input id="title" placeholder="Contoh: Promo Besar Hari Ini!" />
+  <label>Deskripsi:</label>
+  <input id="desc" placeholder="Penawaran hanya sampai malam ini..." />
+  <label>URL Gambar (thumbnail):</label>
+  <input id="img" placeholder="https://i.imgur.com/abcd.jpg" />
+  <label>Link Tujuan (misal: smartlink iMonetizeIt):</label>
+  <input id="target" placeholder="https://go.imonetizeit.com/..." />
+  <button onclick="generate()">🎉 Generate Script</button>
+
+  <pre id="result">Script akan muncul di sini...</pre>
+
+  <script>
+    function generate() {
+      const title = document.getElementById("title").value;
+      const desc = document.getElementById("desc").value;
+      const img = document.getElementById("img").value;
+      const target = document.getElementById("target").value;
+
+      const code = `export default {
+  async fetch(request) {
+    return new Response(\`<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>${title}</title>
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${desc}" />
+  <meta property="og:image" content="${img}" />
+  <meta property="og:url" content="${target}" />
+  <meta http-equiv="refresh" content="0; url=${target}" />
+</head>
+<body></body>
+</html>\`, {
+      headers: { 'content-type': 'text/html' },
+    });
+  },
+};`;
+      document.getElementById("result").innerText = code;
+    }
+  </script>
+</body>
+</html>
