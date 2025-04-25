@@ -32,15 +32,15 @@
   </style>
 </head>
 <body>
-  <h2>🔧 Cloudflare Worker Link Preview Generator</h2>
+  <h2>🔧 Link Preview Code Generator</h2>
   <label>Judul:</label>
-  <input id="title" placeholder="Contoh: Promo Besar Hari Ini!" />
+  <input id="title" placeholder="Kata-kata hari ini!" />
   <label>Deskripsi:</label>
-  <input id="desc" placeholder="Penawaran hanya sampai malam ini..." />
+  <input id="desc" placeholder="Kata-kata hari ini!" />
   <label>URL Gambar (thumbnail):</label>
-  <input id="img" placeholder="https://i.imgur.com/abcd.jpg" />
-  <label>Link Tujuan (misal: smartlink iMonetizeIt):</label>
-  <input id="target" placeholder="https://go.imonetizeit.com/..." />
+  <input id="img" placeholder="Link foto Imgbb atau dari Twitter" />
+  <label>Link Tujuan (Smartlink atau link yang sudah di shorting):</label>
+  <input id="target" placeholder="Smartlink atau link yang sudah di shorting" />
   <button onclick="generate()">🎉 Generate Script</button>
 
   <pre id="result">Script akan muncul di sini...</pre>
